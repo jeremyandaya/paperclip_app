@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PaperclipApp</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+	<% if user_signed_in? %>
+		<%= current_user.name %><br>
+		<button><%= link_to "Edit User", edit_user_registration_path %></button>
+		<button><%= link_to "Add New Post", new_post_path, class: "button" %></button>
+		<button><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></button>
+	<% else %>
+		<button><%= link_to "Sign In", new_user_session_path %></button>
+		<button><%= link_to "Sign Up", new_user_registration_path, class: "button" %></button>
+	<% end %>
+
+	<p class="notice"><%= notice %></p>
+	<p class="alert"><%= alert %></p>
+
+<%= yield %>
+
+</body>
+</html>
